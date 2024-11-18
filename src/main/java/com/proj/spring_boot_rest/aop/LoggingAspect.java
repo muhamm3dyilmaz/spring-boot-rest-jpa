@@ -22,22 +22,22 @@ public class LoggingAspect {
     //     LOGGER.info("Method Called");
     // }
 
-    @Before("execution(* com.proj.spring_boot_rest.service.JobService.getJob*(..))")
+    @Before("execution(* com.proj.spring_boot_rest.service.JobService.getJob(..))")
     public void logMethodCall(JoinPoint jp) {
         LOGGER.info("Method Called " + jp.getSignature().getName());
     }
 
-    @After("execution(* com.proj.spring_boot_rest.service.JobService.getJob*(..))")
+    @After("execution(* com.proj.spring_boot_rest.service.JobService.getJob(..))")
     public void logMethodExecuted(JoinPoint jp) {
         LOGGER.info("Method Executed " + jp.getSignature().getName());
     }
 
-    @AfterReturning("execution(* com.proj.spring_boot_rest.service.JobService.getJob*(..))")
+    @AfterReturning("execution(* com.proj.spring_boot_rest.service.JobService.getJob(..))")
     public void logMethodExecutedSuccess(JoinPoint jp) {
         LOGGER.info("Method Executed Successfully " + jp.getSignature().getName());
     }
 
-    @AfterThrowing("execution(* com.proj.spring_boot_rest.service.JobService.getJob*(..))")
+    @AfterThrowing("execution(* com.proj.spring_boot_rest.service.JobService.getJob(..))")
     public void logMethodCrashed(JoinPoint jp) {
         LOGGER.info("Method has errors " + jp.getSignature().getName());
     }
