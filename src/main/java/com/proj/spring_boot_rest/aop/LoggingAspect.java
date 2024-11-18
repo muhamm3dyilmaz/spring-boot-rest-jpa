@@ -1,6 +1,9 @@
 package com.proj.spring_boot_rest.aop;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
@@ -22,6 +25,21 @@ public class LoggingAspect {
     @Before("execution(* com.proj.spring_boot_rest.service.JobService.getJob*(..))")
     public void logMethodCall(JoinPoint jp) {
         LOGGER.info("Method Called " + jp.getSignature().getName());
+    }
+
+    @After("execution(* com.proj.spring_boot_rest.service.JobService.getJob*(..))")
+    public void logMethodExecuted(JoinPoint jp) {
+        LOGGER.info("Method Executed " + jp.getSignature().getName());
+    }
+
+    @AfterReturning("execution(* com.proj.spring_boot_rest.service.JobService.getJob*(..))")
+    public void logMethodExecutedSuccess(JoinPoint jp) {
+        LOGGER.info("Method Executed Successfully " + jp.getSignature().getName());
+    }
+
+    @AfterThrowing("execution(* com.proj.spring_boot_rest.service.JobService.getJob*(..))")
+    public void logMethodCrashed(JoinPoint jp) {
+        LOGGER.info("Method has errors " + jp.getSignature().getName());
     }
 
 }
